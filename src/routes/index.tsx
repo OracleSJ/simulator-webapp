@@ -22,7 +22,7 @@ function DataConfiguration() {
     endDate: ''
   });
   
-  const [currentStep, setCurrentStep] = useState(1);
+  const [, setCurrentStep] = useState(1);
 
   // 정적 데이터 정의 - 실제 프로젝트에서는 외부 API나 설정 파일에서 가져올 수 있습니다
   const markets = [
@@ -35,9 +35,7 @@ function DataConfiguration() {
     { value: '1m', label: '1분봉' },
     { value: '5m', label: '5분봉' },
     { value: '15m', label: '15분봉' },
-    { value: '30m', label: '30분봉' },
     { value: '1h', label: '1시간봉' },
-    { value: '4h', label: '4시간봉' },
     { value: '1d', label: '1일봉' },
     { value: '1w', label: '1주봉' },
     { value: '1M', label: '1월봉' }
@@ -73,18 +71,8 @@ function DataConfiguration() {
   const isValidConfig = dataConfig.startDate && dataConfig.endDate;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-6">
-      <div className="max-w-6xl mx-auto">
-        {/* 애플리케이션 헤더 - 사용자에게 현재 위치와 목적을 명확히 전달 */}
-        <div className="text-center mb-6">
-          <h1 className="text-4xl font-bold text-white mb-2">
-            트레이딩 시뮬레이터
-          </h1>
-          <p className="text-gray-300 text-lg">
-            Price Data 폴더에서 불러올 데이터를 설정하세요
-          </p>
-        </div>
-
+    <div>
+      <div className="max-w-2xl mx-auto">
         {/* 진행 단계 표시 - 사용자 경험을 위한 시각적 피드백 */}
         <div className="mb-8 flex justify-center">
           <div className="flex items-center space-x-6">
@@ -143,7 +131,7 @@ function DataConfiguration() {
                     <select
                       value={dataConfig.market}
                       onChange={(e) => handleConfigChange('market', e.target.value)}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all appearance-none"
                     >
                       {markets.map(market => (
                         <option key={market.value} value={market.value} className="bg-slate-800">
@@ -164,7 +152,7 @@ function DataConfiguration() {
                       (<select
                         value={dataConfig.symbol}
                         onChange={(e) => handleConfigChange('symbol', e.target.value)}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all appearance-none"
                       >
                         {cryptoSymbols.map(symbol => (
                           <option key={symbol} value={symbol} className="bg-slate-800">
@@ -195,7 +183,7 @@ function DataConfiguration() {
                   <select
                     value={dataConfig.timeframe}
                     onChange={(e) => handleConfigChange('timeframe', e.target.value)}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all appearance-none"
                   >
                     {timeframes.map(tf => (
                       <option key={tf.value} value={tf.value} className="bg-slate-800">
