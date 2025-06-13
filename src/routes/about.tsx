@@ -1,7 +1,4 @@
-// src/routes/simulation.tsx
-import { createFileRoute } from '@tanstack/react-router'
-
-export const Route = createFileRoute('/simulation')({
+export const Route = createFileRoute({
   component: Simulation,
 })
 

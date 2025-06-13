@@ -1,11 +1,19 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { tanstackStart } from '@tanstack/react-start/plugin/vite'
+import { tanstackRouter } from '@tanstack/router-plugin/vite'
+
 
 // https://vite.dev/config/
 export default defineConfig({
+  server: {
+    port: 3000,
+  },
   plugins: [
-    // tanstackStart(),
+    tanstackRouter({
+      target: 'react',
+      autoCodeSplitting: true,      // 자동 코드 분할 활성화(선택)
+      verboseFileRoutes: false      // 파일 라우트 로그(선택)
+    }),
     react()
   ],
 })
