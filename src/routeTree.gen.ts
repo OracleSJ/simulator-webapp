@@ -14,7 +14,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SettingIndexRouteImport } from './routes/setting/index'
-import { Route as SettingPostIdRouteImport } fr./routes/setting/$postId/$postId'
+import { Route as SettingPostIdRouteImport } from './routes/setting/$postId'
 
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
