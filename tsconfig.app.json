@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "baseUrl": ".", // 이 설정이 가장 중요합니다. 프로젝트의 루트를 기준으로 경로를 해석합니다.
+    "paths": {
+      "~/*": ["src/*"]
+    },
+
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2020",
     "useDefineForClassFields": true,
