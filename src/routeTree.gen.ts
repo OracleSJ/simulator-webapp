@@ -11,14 +11,13 @@
 import type { CreateFileRoute, FileRoutesByPath } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AboutRouteImport } from './routes/about'
+import { Route as SettingsRouteRouteImport } from './routes/settings/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as SettingIndexRouteImport } from './routes/setting/index'
-import { Route as SettingPostIdRouteImport } from './routes/setting/$postId'
+import { Route as SettingsIndexRouteImport } from './routes/settings/index'
 
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const SettingsRouteRoute = SettingsRouteRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -26,49 +25,38 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SettingIndexRoute = SettingIndexRouteImport.update({
-  id: '/setting/',
-  path: '/setting/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SettingPostIdRoute = SettingPostIdRouteImport.update({
-  id: '/setting/$postId',
-  path: '/setting/$postId',
-  getParentRoute: () => rootRouteImport,
+const SettingsIndexRoute = SettingsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SettingsRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/setting/$postId': typeof SettingPostIdRoute
-  '/setting': typeof SettingIndexRoute
+  '/settings': typeof SettingsRouteRouteWithChildren
+  '/settings/': typeof SettingsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/setting/$postId': typeof SettingPostIdRoute
-  '/setting': typeof SettingIndexRoute
+  '/settings': typeof SettingsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/setting/$postId': typeof SettingPostIdRoute
-  '/setting/': typeof SettingIndexRoute
+  '/settings': typeof SettingsRouteRouteWithChildren
+  '/settings/': typeof SettingsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/setting/$postId' | '/setting'
+  fullPaths: '/' | '/settings' | '/settings/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/setting/$postId' | '/setting'
-  id: '__root__' | '/' | '/about' | '/setting/$postId' | '/setting/'
+  to: '/' | '/settings'
+  id: '__root__' | '/' | '/settings' | '/settings/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
-  SettingPostIdRoute: typeof SettingPostIdRoute
-  SettingIndexRoute: typeof SettingIndexRoute
+  SettingsRouteRoute: typeof SettingsRouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -80,26 +68,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/setting/$postId': {
-      id: '/setting/$postId'
-      path: '/setting/$postId'
-      fullPath: '/setting/$postId'
-      preLoaderRoute: typeof SettingPostIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/setting/': {
-      id: '/setting/'
-      path: '/setting'
-      fullPath: '/setting'
-      preLoaderRoute: typeof SettingIndexRouteImport
-      parentRoute: typeof rootRouteImport
+    '/settings/': {
+      id: '/settings/'
+      path: '/'
+      fullPath: '/settings/'
+      preLoaderRoute: typeof SettingsIndexRouteImport
+      parentRoute: typeof SettingsRouteRoute
     }
   }
 }
@@ -113,39 +94,40 @@ declare module './routes/index' {
     FileRoutesByPath['/']['fullPath']
   >
 }
-declare module './routes/about' {
+declare module './routes/settings/route' {
   const createFileRoute: CreateFileRoute<
-    '/about',
-    FileRoutesByPath['/about']['parentRoute'],
-    FileRoutesByPath['/about']['id'],
-    FileRoutesByPath['/about']['path'],
-    FileRoutesByPath['/about']['fullPath']
+    '/settings',
+    FileRoutesByPath['/settings']['parentRoute'],
+    FileRoutesByPath['/settings']['id'],
+    FileRoutesByPath['/settings']['path'],
+    FileRoutesByPath['/settings']['fullPath']
   >
 }
-declare module './routes/setting/$postId' {
+declare module './routes/settings/index' {
   const createFileRoute: CreateFileRoute<
-    '/setting/$postId',
-    FileRoutesByPath['/setting/$postId']['parentRoute'],
-    FileRoutesByPath['/setting/$postId']['id'],
-    FileRoutesByPath['/setting/$postId']['path'],
-    FileRoutesByPath['/setting/$postId']['fullPath']
-  >
-}
-declare module './routes/setting/index' {
-  const createFileRoute: CreateFileRoute<
-    '/setting/',
-    FileRoutesByPath['/setting/']['parentRoute'],
-    FileRoutesByPath['/setting/']['id'],
-    FileRoutesByPath['/setting/']['path'],
-    FileRoutesByPath['/setting/']['fullPath']
+    '/settings/',
+    FileRoutesByPath['/settings/']['parentRoute'],
+    FileRoutesByPath['/settings/']['id'],
+    FileRoutesByPath['/settings/']['path'],
+    FileRoutesByPath['/settings/']['fullPath']
   >
 }
 
+interface SettingsRouteRouteChildren {
+  SettingsIndexRoute: typeof SettingsIndexRoute
+}
+
+const SettingsRouteRouteChildren: SettingsRouteRouteChildren = {
+  SettingsIndexRoute: SettingsIndexRoute,
+}
+
+const SettingsRouteRouteWithChildren = SettingsRouteRoute._addFileChildren(
+  SettingsRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
-  SettingPostIdRoute: SettingPostIdRoute,
-  SettingIndexRoute: SettingIndexRoute,
+  SettingsRouteRoute: SettingsRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
