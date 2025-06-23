@@ -1,9 +1,10 @@
-import { progressStore } from "~/stores/configStore";
-import type { StepInfo } from "~/types/data";
+import type { CurrentStep, StepInfo } from "~/types/data";
 
-export function StepProgress() {
-  const { currentStep } = progressStore();
+interface StepProgressProps {
+  currentStep: CurrentStep;
+}
 
+export function StepProgress({ currentStep }: StepProgressProps) {
   const steps: StepInfo[] = [
     {
       number: 1,
