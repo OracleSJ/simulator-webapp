@@ -1,3 +1,5 @@
+import type { LucideIcon } from "lucide-react";
+
 export type StrategyKey = "ma" | "bb" | "rsi" | "adx" | "kalman1st" | "kalman2nd" | "kalman3rd";
 export type KalmanType = "persistent" | "window" | "decay";
 export type FieldType = "text" | "number" | "select" | "array" | "toggle" | "conditional" | "grid";
@@ -20,7 +22,7 @@ export interface FieldConfig {
 
 export interface SectionConfig {
   title: string;
-  icon: string;
+  icon: LucideIcon;
   fields: FieldConfig[];
 }
 
@@ -50,6 +52,8 @@ export interface FullStrategyConfig {
   };
   settings: CommonConfig;
 }
+
+
 
 // 개별 전략 타입 정의
 export interface MAConfig {

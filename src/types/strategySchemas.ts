@@ -1,6 +1,7 @@
 // config/strategySchemas.ts
 
-import type { StrategyKey, StrategySchema, StrategyOption } from "~/types/strategies";
+import { BarChart3, Target, TrendingUp, Zap } from "lucide-react";
+import type { StrategyKey, StrategySchema, StrategyOption } from "~/types/strategyConfigs";
 
 // 공통 옵션들
 export const TIMEFRAME_OPTIONS = [
@@ -78,7 +79,7 @@ export const STRATEGY_SCHEMAS: Record<StrategyKey, StrategySchema> = {
   ma: {
     parameters: {
       title: "파라미터 설정",
-      icon: "📊",
+      icon: BarChart3,
       fields: [
         {
           key: "timeframes",
@@ -100,7 +101,7 @@ export const STRATEGY_SCHEMAS: Record<StrategyKey, StrategySchema> = {
     },
     logics: {
       title: "전략 로직 설정",
-      icon: "🎯",
+      icon: Target,
       fields: COMMON_LOGIC_FIELDS,
     },
   },
@@ -108,7 +109,7 @@ export const STRATEGY_SCHEMAS: Record<StrategyKey, StrategySchema> = {
   bb: {
     parameters: {
       title: "파라미터 설정",
-      icon: "📊",
+      icon: BarChart3,
       fields: [
         {
           key: "timeframes",
@@ -141,7 +142,7 @@ export const STRATEGY_SCHEMAS: Record<StrategyKey, StrategySchema> = {
     },
     logics: {
       title: "전략 로직 설정",
-      icon: "🎯",
+      icon: Target,
       fields: COMMON_LOGIC_FIELDS,
     },
   },
@@ -149,7 +150,7 @@ export const STRATEGY_SCHEMAS: Record<StrategyKey, StrategySchema> = {
   rsi: {
     parameters: {
       title: "파라미터 설정",
-      icon: "⚡",
+      icon: Zap,
       fields: [
         {
           key: "",
@@ -174,7 +175,7 @@ export const STRATEGY_SCHEMAS: Record<StrategyKey, StrategySchema> = {
     },
     logics: {
       title: "전략 로직 설정",
-      icon: "🎯",
+      icon: Target,
       fields: COMMON_LOGIC_FIELDS,
     },
   },
@@ -182,7 +183,7 @@ export const STRATEGY_SCHEMAS: Record<StrategyKey, StrategySchema> = {
   adx: {
     parameters: {
       title: "파라미터 설정",
-      icon: "📈",
+      icon: TrendingUp,
       fields: [
         {
           key: "",
@@ -207,7 +208,7 @@ export const STRATEGY_SCHEMAS: Record<StrategyKey, StrategySchema> = {
     },
     logics: {
       title: "전략 로직 설정",
-      icon: "🎯",
+      icon: Target,
       fields: COMMON_LOGIC_FIELDS,
     },
   },
@@ -215,7 +216,7 @@ export const STRATEGY_SCHEMAS: Record<StrategyKey, StrategySchema> = {
   kalman1st: {
     parameters: {
       title: "파라미터 설정",
-      icon: "⚡",
+      icon: Zap,
       fields: [
         {
           key: "",
@@ -304,7 +305,7 @@ export const STRATEGY_SCHEMAS: Record<StrategyKey, StrategySchema> = {
     },
     logics: {
       title: "전략 로직 설정",
-      icon: "🎯",
+      icon: Target,
       fields: COMMON_LOGIC_FIELDS,
     },
   },
@@ -312,7 +313,7 @@ export const STRATEGY_SCHEMAS: Record<StrategyKey, StrategySchema> = {
   kalman2nd: {
     parameters: {
       title: "파라미터 설정",
-      icon: "⚡",
+      icon: Zap,
       fields: [
         {
           key: "",
@@ -425,7 +426,7 @@ export const STRATEGY_SCHEMAS: Record<StrategyKey, StrategySchema> = {
     },
     logics: {
       title: "전략 로직 설정",
-      icon: "🎯",
+      icon: Target,
       fields: [
         ...COMMON_LOGIC_FIELDS,
         {
@@ -442,7 +443,7 @@ export const STRATEGY_SCHEMAS: Record<StrategyKey, StrategySchema> = {
   kalman3rd: {
     parameters: {
       title: "파라미터 설정",
-      icon: "⚡",
+      icon: Zap,
       fields: [
         {
           key: "",
@@ -555,7 +556,7 @@ export const STRATEGY_SCHEMAS: Record<StrategyKey, StrategySchema> = {
     },
     logics: {
       title: "전략 로직 설정",
-      icon: "🎯",
+      icon: Target,
       fields: [
         ...COMMON_LOGIC_FIELDS,
         {

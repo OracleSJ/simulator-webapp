@@ -37,7 +37,7 @@ export const DataFormSection = () => {
     <section className="bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 p-6 shadow-2xl">
       {/* 폼 헤더 - 섹션의 목적을 명확히 표시 */}
       <header className="flex items-center gap-3 mb-6">
-        <Database className="w-6 h-6 text-blue-400" />
+        <Database size={24} className=" text-blue-400" />
         <h2 className="text-2xl font-semibold text-white">데이터 설정</h2>
       </header>
 
@@ -134,8 +134,8 @@ export const DataFormSection = () => {
       <div className="flex justify-end mt-6">
         <button
           onClick={handleNext}
-          disabled={!isValidData && currentStep == 1}
-          className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium rounded-lg hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105">
+          disabled={!isValidData || currentStep !== 1}
+          className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium rounded-lg hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105 select-none">
           다음 단계: 전략 설정
         </button>
       </div>

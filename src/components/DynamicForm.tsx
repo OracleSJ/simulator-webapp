@@ -1,7 +1,8 @@
 // components/DynamicForm/index.tsx
 
 import React from "react";
-import type { FieldConfig, SectionConfig } from "~/types/strategies";
+import { X, Plus, Circle, CheckCircle } from "lucide-react";
+import type { FieldConfig, SectionConfig } from "~/types/strategyConfigs";
 
 // ===== 유틸리티 컴포넌트들 =====
 
@@ -14,9 +15,9 @@ export const ToggleSwitch: React.FC<{
   <div className="flex items-center gap-2">
     <button onClick={() => onChange(!enabled)} className="flex items-center gap-1 text-sm">
       {enabled ? (
-        <span className="w-5 h-5 text-green-400">🟢</span>
+        <CheckCircle className="w-5 h-5 text-green-400" />
       ) : (
-        <span className="w-5 h-5 text-gray-400">⚪</span>
+        <Circle className="w-5 h-5 text-gray-400" />
       )}
       <span className={enabled ? "text-green-400" : "text-gray-400"}>{label}</span>
     </button>
@@ -59,14 +60,14 @@ const ArrayInput: React.FC<{
             onClick={() => removeValue(index)}
             className="p-3 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-all"
             title="삭제">
-            ❌
+            <X className="w-4 h-4" />
           </button>
         </div>
       ))}
       <button
         onClick={addValue}
         className="flex items-center gap-2 px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-gray-300 hover:text-white hover:bg-white/10 transition-all w-full justify-center">
-        <span className="w-4 h-4">➕</span>
+        <Plus className="w-4 h-4" />
         추가
       </button>
     </div>
@@ -211,7 +212,7 @@ export const DynamicSection: React.FC<{
   return (
     <div className="space-y-4">
       <h4 className="flex items-center gap-2 text-sm font-medium text-gray-200">
-        <span className="w-4 h-4">{section.icon}</span>
+        <section.icon size={16} />
         {section.title}
       </h4>
       <div className="space-y-4">

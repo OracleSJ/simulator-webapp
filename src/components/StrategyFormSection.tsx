@@ -5,8 +5,9 @@ import {
   STRATEGY_OPTIONS,
   TIMEFRAME_OPTIONS,
   getDefaultConfigByStrategy,
-} from "~/types/strategySchema";
-import type { StrategyKey, CommonConfig, FullStrategyConfig } from "~/types/strategies";
+} from "~/types/strategySchemas";
+import type { StrategyKey, CommonConfig, FullStrategyConfig } from "~/types/strategyConfigs";
+import { BarChart3, Clock, Compass, Flag, Settings, Zap } from "lucide-react";
 
 // ===== 메인 전략 설정 페이지 컴포넌트 =====
 
@@ -73,7 +74,7 @@ export const StrategyFormSection: React.FC = () => {
     <section className="bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 p-6 shadow-2xl">
       {/* ===== 헤더 ===== */}
       <header className="flex items-center gap-3 mb-6">
-        <span className="w-6 h-6 text-purple-400">⚙️</span>
+        <Flag size={24} className="text-blue-400" />
         <h2 className="text-2xl font-semibold text-white">전략 설정</h2>
       </header>
 
@@ -116,7 +117,7 @@ const StrategySelectionSection: React.FC<{
   <section className="space-y-4">
     <div className="space-y-2">
       <label className="flex items-center gap-2 text-sm font-medium text-gray-200">
-        <span className="w-4 h-4">⚙️</span>
+        <Compass size={16} />
         대상 전략 키
       </label>
       <select
@@ -146,7 +147,7 @@ const DynamicStrategyConfigSection: React.FC<{
   <section className="space-y-4">
     <div className="space-y-2">
       <h3 className="flex items-center gap-2 text-sm font-medium text-gray-200">
-        <span className="w-4 h-4">📊</span>
+        <BarChart3 size={16} />
         사용 지표 파라미터 설정 ({strategyLabel})
       </h3>
     </div>
@@ -181,7 +182,7 @@ const CommonConfigSection: React.FC<{
   <section className="space-y-4">
     <div className="space-y-2">
       <h4 className="flex items-center gap-2 text-sm font-medium text-gray-200">
-        <span className="w-4 h-4">⚙️</span>
+        <Settings size={16} />
         공통 설정
       </h4>
     </div>
@@ -190,7 +191,7 @@ const CommonConfigSection: React.FC<{
       {/* 가격 체크 타임프레임 */}
       <div className="space-y-2">
         <label className="flex items-center gap-2 text-sm font-medium text-gray-200">
-          <span className="w-4 h-4">🕐</span>
+          <Clock size={16} />
           가격 체크 타임프레임 (신호 check 시 사용할 가격 주기)
         </label>
         <select
@@ -212,7 +213,7 @@ const CommonConfigSection: React.FC<{
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
           <label className="flex items-center gap-2 text-sm font-medium text-gray-200">
-            <span className="w-4 h-4">📊</span>
+            <BarChart3 size={16} />
             결과 표시 시 사용할 차트 타임프레임
           </label>
           <select
@@ -228,7 +229,7 @@ const CommonConfigSection: React.FC<{
         </div>
         <div className="space-y-2">
           <label className="flex items-center gap-2 text-sm font-medium text-gray-200">
-            <span className="w-4 h-4">⚡</span>
+            <Zap size={16} />
             WATCHER_HISTORY_HOURS
           </label>
           <input
@@ -264,7 +265,7 @@ const SubmitSection: React.FC<{
   <div className="flex justify-end">
     <button
       onClick={onSubmit}
-      className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium rounded-lg hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105">
+      className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium rounded-lg hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105 select-none">
       다음 단계: 시뮬레이션 실행
     </button>
   </div>
