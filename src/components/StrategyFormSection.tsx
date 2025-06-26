@@ -8,6 +8,8 @@ import {
 } from "~/types/strategySchemas";
 import type { StrategyKey, CommonConfig, FullStrategyConfig } from "~/types/strategyConfigs";
 import { BarChart3, Clock, Compass, Flag, Settings, Zap } from "lucide-react";
+import SubmitButton from "./SubmitButton";
+import { progressStore } from "~/stores/configStore";
 
 // ===== 메인 전략 설정 페이지 컴포넌트 =====
 
@@ -21,6 +23,8 @@ export const StrategyFormSection: React.FC = () => {
     trendFilterEnabled: false,
     watcherHistoryHours: 48,
   });
+
+  const { currentStep, nextStep } = progressStore();
 
   // ===== 이벤트 핸들러들 =====
 
@@ -52,7 +56,7 @@ export const StrategyFormSection: React.FC = () => {
   /**
    * 폼 제출 처리
    */
-  const handleSubmit = () => {
+  const handleNext = () => {
     const fullConfig: FullStrategyConfig = {
       strategy: {
         strategyKey,
@@ -60,9 +64,9 @@ export const StrategyFormSection: React.FC = () => {
       },
       settings: commonConfig,
     };
-
     console.log("전략 설정 완료:", fullConfig);
-    // TODO: 다음 단계로 진행하는 로직 추가
+
+    nextStep();
   };
 
   // ===== 렌더링 =====
@@ -98,7 +102,11 @@ export const StrategyFormSection: React.FC = () => {
         <CommonConfigSection config={commonConfig} onChange={updateCommonConfig} />
 
         {/* ===== 제출 버튼 ===== */}
-        <SubmitSection onSubmit={handleSubmit} />
+        <div className="flex justify-end">
+          <SubmitButton onSubmit={handleNext} disabled={currentStep !== 2}>
+            다음 단계: 시뮬레이션 실행
+          </SubmitButton>
+        </div>
       </div>
     </section>
   );
@@ -254,21 +262,6 @@ const CommonConfigSection: React.FC<{
       </div>
     </div>
   </section>
-);
-
-/**
- * 제출 버튼 섹션
- */
-const SubmitSection: React.FC<{
-  onSubmit: () => void;
-}> = ({ onSubmit }) => (
-  <div className="flex justify-end">
-    <button
-      onClick={onSubmit}
-      className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium rounded-lg hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105 select-none">
-      다음 단계: 시뮬레이션 실행
-    </button>
-  </div>
 );
 
 export default StrategyFormSection;

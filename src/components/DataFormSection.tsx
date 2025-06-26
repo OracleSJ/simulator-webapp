@@ -1,6 +1,7 @@
 import { Calendar, Database, TrendingUp, Clock } from "lucide-react";
 import { configStore, progressStore } from "~/stores/configStore";
 import type { Option } from "~/types/data";
+import SubmitButton from "./SubmitButton";
 
 export const DataFormSection = () => {
   // config 입력값 전역 상태 관리
@@ -132,12 +133,9 @@ export const DataFormSection = () => {
 
       {/* 액션 버튼 - 사용자의 다음 행동을 유도하는 중요한 UI 요소 */}
       <div className="flex justify-end mt-6">
-        <button
-          onClick={handleNext}
-          disabled={!isValidData || currentStep !== 1}
-          className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium rounded-lg hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105 select-none">
+        <SubmitButton onSubmit={handleNext} disabled={!isValidData || currentStep !== 1}>
           다음 단계: 전략 설정
-        </button>
+        </SubmitButton>
       </div>
     </section>
   );

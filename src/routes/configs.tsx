@@ -14,7 +14,7 @@ const SettingPage = () => {
       </section>
       <section className="max-w-2xl mx-auto">
         <div className="flex flex-col gap-10">
-          {currentStep === 2 ? <StrategyFormSection /> : undefined}
+          {currentStep >= 2 ? <StrategyFormSection /> : undefined}
           <DataFormSection />
         </div>
       </section>
