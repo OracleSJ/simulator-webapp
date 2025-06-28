@@ -3,7 +3,7 @@ export interface Option {
   label: string;
 }
 
-export type CurrentStep = 1 | 2 | 3;
+export type ProgressStep = 1 | 2 | 3 | 4;
 
 export interface StepInfo {
   number: number;

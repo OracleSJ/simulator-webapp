@@ -1,7 +1,7 @@
-import type { CurrentStep, StepInfo } from "~/types/timedata";
+import type { ProgressStep, StepInfo } from "~/types/timedata";
 
 interface StepProgressProps {
-  currentStep: CurrentStep;
+  currentStep: ProgressStep;
 }
 
 export function StepProgress({ currentStep }: StepProgressProps) {
@@ -22,7 +22,7 @@ export function StepProgress({ currentStep }: StepProgressProps) {
       number: 3,
       title: "시뮬레이션 실행",
       isActive: currentStep === 3,
-      isCompleted: false, // 마지막 단계는 완료 상태가 없음
+      isCompleted: currentStep > 3, // 마지막 단계는 완료 상태가 없음
     },
   ];
 

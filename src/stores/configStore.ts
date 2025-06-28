@@ -1,7 +1,7 @@
 import { create } from "zustand";
+import type { ProgressStep } from "~/types/timedata";
 
 // ==================== 설정 단계 ====================
-type ProgressStep = 1 | 2 | 3;
 
 interface ProgressState {
   currentStep: ProgressStep;

@@ -11,9 +11,15 @@
 import type { CreateFileRoute, FileRoutesByPath } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SimulationRouteImport } from './routes/simulation'
 import { Route as ConfigsRouteImport } from './routes/configs'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SimulationRoute = SimulationRouteImport.update({
+  id: '/simulation',
+  path: '/simulation',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ConfigsRoute = ConfigsRouteImport.update({
   id: '/configs',
   path: '/configs',
@@ -28,27 +34,31 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/configs': typeof ConfigsRoute
+  '/simulation': typeof SimulationRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/configs': typeof ConfigsRoute
+  '/simulation': typeof SimulationRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/configs': typeof ConfigsRoute
+  '/simulation': typeof SimulationRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/configs'
+  fullPaths: '/' | '/configs' | '/simulation'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/configs'
-  id: '__root__' | '/' | '/configs'
+  to: '/' | '/configs' | '/simulation'
+  id: '__root__' | '/' | '/configs' | '/simulation'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ConfigsRoute: typeof ConfigsRoute
+  SimulationRoute: typeof SimulationRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,6 +75,13 @@ declare module '@tanstack/react-router' {
       path: '/configs'
       fullPath: '/configs'
       preLoaderRoute: typeof ConfigsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/simulation': {
+      id: '/simulation'
+      path: '/simulation'
+      fullPath: '/simulation'
+      preLoaderRoute: typeof SimulationRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,10 +105,20 @@ declare module './routes/configs' {
     FileRoutesByPath['/configs']['fullPath']
   >
 }
+declare module './routes/simulation' {
+  const createFileRoute: CreateFileRoute<
+    '/simulation',
+    FileRoutesByPath['/simulation']['parentRoute'],
+    FileRoutesByPath['/simulation']['id'],
+    FileRoutesByPath['/simulation']['path'],
+    FileRoutesByPath['/simulation']['fullPath']
+  >
+}
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ConfigsRoute: ConfigsRoute,
+  SimulationRoute: SimulationRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,4 +1,5 @@
 import { DataFormSection } from "~/components/DataFormSection";
+import { SimulationExecutionSection } from "~/components/SimulationExecutionSection";
 import { StepProgress } from "~/components/StepProgress";
 import { StrategyFormSection } from "~/components/StrategyFormSection";
 import { progressStore } from "~/stores/configStore";
@@ -14,16 +15,17 @@ const SettingPage = () => {
       </section>
       <section className="max-w-2xl mx-auto">
         <div className="flex flex-col gap-10">
-          {currentStep >= 2 ? <StrategyFormSection /> : undefined}
-          <DataFormSection />
+          {/* 각 단계에 맞는 컴포넌트를 조건부로 렌더링합니다. */}
+          {currentStep >= 1 && <DataFormSection />}
+          {currentStep >= 2 && <StrategyFormSection />}
+          {currentStep >= 3 && <SimulationExecutionSection />}
         </div>
       </section>
     </div>
   );
 };
 
-// TanStack Router의 핵심 - 파일 기반 라우트 생성
-// 이 함수가 이 파일을 실제 라우트로 변환시킵니다
+// TanStack Router를 사용하여 라우트를 정의합니다.
 export const Route = createFileRoute({
   component: SettingPage,
 });
