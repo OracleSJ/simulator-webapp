@@ -1,11 +1,11 @@
 import { Calendar, Database, TrendingUp, Clock } from "lucide-react";
 import { configStore, progressStore } from "~/stores/configStore";
-import type { Option } from "~/types/data";
+import type { Option } from "~/types/timedata";
 import SubmitButton from "./SubmitButton";
 
 export const DataFormSection = () => {
   // config 입력값 전역 상태 관리
-  const { market, symbol, timeframe, startDate, endDate, setDataConfig } = configStore();
+  const { market, symbol, timeframe, startDate, endDate, setConfig: setDataConfig } = configStore();
   const { currentStep, nextStep } = progressStore();
 
   // select 정적 데이터 목록

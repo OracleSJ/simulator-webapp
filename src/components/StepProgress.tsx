@@ -1,4 +1,4 @@
-import type { CurrentStep, StepInfo } from "~/types/data";
+import type { CurrentStep, StepInfo } from "~/types/timedata";
 
 interface StepProgressProps {
   currentStep: CurrentStep;
